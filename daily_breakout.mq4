@@ -46,8 +46,8 @@ void OnTick()
       Lot1,
       iHigh(Symbol(), PERIOD_D1, 1) + 0.0001,
       0,
-      iHigh(Symbol(), PERIOD_D1, 1) - 0.0015,
-      iHigh(Symbol(), PERIOD_D1, 1) + 0.0015,
+      iHigh(Symbol(), PERIOD_D1, 1) - 0.0005,
+      iHigh(Symbol(), PERIOD_D1, 1) + 0.0005,
       Com
       );
       
@@ -57,8 +57,8 @@ void OnTick()
       Lot2,
       iHigh(Symbol(), PERIOD_D1, 1) + 0.0001,
       0,
-      iHigh(Symbol(), PERIOD_D1, 1) - 0.0015,
-      iHigh(Symbol(), PERIOD_D1, 1) + 0.0020,
+      iHigh(Symbol(), PERIOD_D1, 1) - 0.0005,
+      iHigh(Symbol(), PERIOD_D1, 1) + 0.0010,
       Com
       );
       
@@ -68,8 +68,8 @@ void OnTick()
       Lot3,
       iHigh(Symbol(), PERIOD_D1, 1) + 0.0001,
       0,
-      iHigh(Symbol(), PERIOD_D1, 1) - 0.0015,
-      iHigh(Symbol(), PERIOD_D1, 1) + 0.0030,
+      iHigh(Symbol(), PERIOD_D1, 1) - 0.0005,
+      iHigh(Symbol(), PERIOD_D1, 1) + 0.0015,
       Com
       );
       
@@ -80,8 +80,8 @@ void OnTick()
       Lot1,
       iLow(Symbol(), PERIOD_D1, 1) - 0.0001,
       0,
-      iLow(Symbol(), PERIOD_D1, 1) + 0.0015,
-      iLow(Symbol(), PERIOD_D1, 1) - 0.0015,
+      iLow(Symbol(), PERIOD_D1, 1) + 0.0005,
+      iLow(Symbol(), PERIOD_D1, 1) - 0.0005,
       Com
       );
       
@@ -91,8 +91,8 @@ void OnTick()
       Lot2,
       iLow(Symbol(), PERIOD_D1, 1) - 0.0001,
       0,
-      iLow(Symbol(), PERIOD_D1, 1) + 0.0015,
-      iLow(Symbol(), PERIOD_D1, 1) - 0.0020,
+      iLow(Symbol(), PERIOD_D1, 1) + 0.0005,
+      iLow(Symbol(), PERIOD_D1, 1) - 0.0010,
       Com
       );
       
@@ -102,8 +102,8 @@ void OnTick()
       Lot3,
       iLow(Symbol(), PERIOD_D1, 1) - 0.0001,
       0,
-      iLow(Symbol(), PERIOD_D1, 1) + 0.0015,
-      iLow(Symbol(), PERIOD_D1, 1) - 0.0030,
+      iLow(Symbol(), PERIOD_D1, 1) + 0.0005,
+      iLow(Symbol(), PERIOD_D1, 1) - 0.0015,
       Com
       );
       
