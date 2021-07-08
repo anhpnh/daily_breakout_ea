@@ -1,6 +1,6 @@
 #property copyright "Copyright 2021, MetaQuotes Software Corp."
 #property link      "https://www.mql5.com"
-#property version   "1.00"
+#property version   "1.02"
 #property strict
 //--- input parameters
 input string   Scalping="Scalping Daily Breakout for GU, EU, AU, UJ, Gold, GJ, EJ";
@@ -44,6 +44,21 @@ void OnTick()
   {
 
    if(last != Time[0] && !checkthuHai()){
+      Comment("High: "+(string)iHigh(Symbol(), PERIOD_D1, 1) + "\n" + "Low: "+(string)iLow(Symbol(), PERIOD_D1, 1) + "\n");
+      ObjectsDeleteAll(0,"HLine");
+      ObjectsDeleteAll(0,"LLine");   
+      //Draw iHigh
+      ObjectCreate("HLine", OBJ_HLINE , 0,Time[0], iHigh(Symbol(), PERIOD_D1, 1));
+      ObjectSet("HLine", OBJPROP_STYLE, STYLE_DOT);
+      ObjectSet("HLine", OBJPROP_COLOR, Purple);
+      ObjectSet("HLine", OBJPROP_WIDTH, 0);
+   
+      //Draw iLow
+      ObjectCreate("LLine", OBJ_HLINE , 0,Time[0], iLow(Symbol(), PERIOD_D1, 1));
+        ObjectSet("LLine", OBJPROP_STYLE, STYLE_DOT);
+      ObjectSet("LLine", OBJPROP_COLOR, Purple);
+      ObjectSet("LLine", OBJPROP_WIDTH, 0);
+
       //Xoa lenh cu
       XoaLenhCu(Magic);
       
@@ -52,7 +67,7 @@ void OnTick()
       Symbol(),
       OP_BUYSTOP,
       Lot1,
-      iHigh(Symbol(), PERIOD_D1, 1) + 1*Point*10,
+      iHigh(Symbol(), PERIOD_D1, 1),
       0,
       iHigh(Symbol(), PERIOD_D1, 1) - SL*Point*10,
       iHigh(Symbol(), PERIOD_D1, 1) + TP1*Point*10,
@@ -63,7 +78,7 @@ void OnTick()
       Symbol(),
       OP_BUYSTOP,
       Lot2,
-      iHigh(Symbol(), PERIOD_D1, 1) + 1*Point*10,
+      iHigh(Symbol(), PERIOD_D1, 1),
       0,
       iHigh(Symbol(), PERIOD_D1, 1) - SL*Point*10,
       iHigh(Symbol(), PERIOD_D1, 1) + TP2*Point*10,
@@ -74,7 +89,7 @@ void OnTick()
       Symbol(),
       OP_BUYSTOP,
       Lot3,
-      iHigh(Symbol(), PERIOD_D1, 1) + 1*Point*10,
+      iHigh(Symbol(), PERIOD_D1, 1),
       0,
       iHigh(Symbol(), PERIOD_D1, 1) - SL*Point*10,
       iHigh(Symbol(), PERIOD_D1, 1) + TP3*Point*10,
@@ -86,7 +101,7 @@ void OnTick()
       Symbol(),
       OP_SELLSTOP,
       Lot1,
-      iLow(Symbol(), PERIOD_D1, 1) - 1*Point*10,
+      iLow(Symbol(), PERIOD_D1, 1),
       0,
       iLow(Symbol(), PERIOD_D1, 1) + SL*Point*10,
       iLow(Symbol(), PERIOD_D1, 1) - TP1*Point*10,
@@ -97,7 +112,7 @@ void OnTick()
       Symbol(),
       OP_SELLSTOP,
       Lot2,
-      iLow(Symbol(), PERIOD_D1, 1) - 1*Point*10,
+      iLow(Symbol(), PERIOD_D1, 1),
       0,
       iLow(Symbol(), PERIOD_D1, 1) + SL*Point*10,
       iLow(Symbol(), PERIOD_D1, 1) - TP2*Point*10,
@@ -108,7 +123,7 @@ void OnTick()
       Symbol(),
       OP_SELLSTOP,
       Lot3,
-      iLow(Symbol(), PERIOD_D1, 1) - 1*Point*10,
+      iLow(Symbol(), PERIOD_D1, 1),
       0,
       iLow(Symbol(), PERIOD_D1, 1) + SL*Point*10,
       iLow(Symbol(), PERIOD_D1, 1) - TP3*Point*10,
