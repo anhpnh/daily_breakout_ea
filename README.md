@@ -1,6 +1,8 @@
 # daily_breakout_ea
 D1, W1, MN1 Breakout Scalping for GU, EU, AU, GJ, UJ, EJ, Gold.
-#Backtest:
+
+# Backtest:
 https://www.youtube.com/watch?v=sqCkCjgKBys
-☕ Buy me a coffee
+
+# ☕ Buy me a coffee
 https://www.paypal.com/paypalme/anhpnh
