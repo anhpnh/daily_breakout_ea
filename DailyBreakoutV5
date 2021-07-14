@@ -4,25 +4,24 @@
 #property strict
 //--- input parameters
 input string   Scalping="D1, W1, MN1 Breakout";
-input bool D1=True;
-input bool W1=True;
-input bool MN1=True;
+input bool D1=true;
+input bool W1=true;
+input bool MN1=true;
 input string   Lot="Static";
 input double   Lot1=0.01;
 input string   Stoploss="Pip";
 input double   SL=5.0;
 input string   TakeProfit="Pip";
 input double   TP=15.0;
-input bool     TrailingStop=True;
-input bool     UseRiskPercent=True;
+input bool     TrailingStop=true;
+input bool     UseRiskPercent=true;
 input double   MaxLot=200.0;
 input string   Risk="% AccountBalance";
 input double   RiskPercent=1.0;
 input string   Magic="123456789";
-input string   StartTradingTime="14:00";
-input string   StopTradingTime="05:00";
-string currentTime;
-bool tradingIsAllowed=false;
+input string   Start_Time="14";
+input string   Finish_Time="5";
+int StartTime,FinishTime, Current_Time;
 datetime last;
 double soTienRuiRo;
 double lotGiaoDich;
@@ -52,51 +51,57 @@ bool checkthuHai(){
 }   
 
 bool CheckTradingTime(){
-   if(StringSubstr(currentTime,0,5)==StartTradingTime)
-      tradingIsAllowed=True;
-   if(StringSubstr(currentTime,0,5)==StopTradingTime)
-      tradingIsAllowed=False;  
+   Current_Time = TimeHour(TimeLocal());
+   if (StringToInteger(Start_Time) == 0) StartTime = 24; if (StringToInteger(Finish_Time) == 0) FinishTime = 24; if (Current_Time == 0) Current_Time = 24;
       
-   return tradingIsAllowed; 
+   if ( Start_Time < Finish_Time )
+      if ( (Current_Time < Start_Time) || (Current_Time >= Finish_Time) ) return(false);
+      
+   if ( Start_Time > Finish_Time )
+      if ( (Current_Time < Start_Time) && (Current_Time >= Finish_Time) ) return(false);
+      
+   return(true); 
    
 }                                      
 
 void OnTick()
   {
-   datetime time = TimeLocal();
-   //Comment(time);
-   currentTime = TimeToString(time, TIME_MINUTES);
    
-   if(CheckTradingTime() == True){
-      if(last != Time[0] && !checkthuHai() && UseRiskPercent==False){
+   if(CheckTradingTime() == false){
+      //Xoa lenh cu
+      XoaLenhCu(Magic);
+   }
+   
+   if(CheckTradingTime() == true){
+      if(last != Time[0] && !checkthuHai() && UseRiskPercent==false){
       
       veHighLow();
       //Xoa lenh cu
       XoaLenhCu(Magic);
       
       //Buy D1
-      if(D1==True)
+      if(D1==true)
          buysellD1();
-      if(W1==True)   
+      if(W1==true)   
          buysellW1();
-      if(MN1==True)   
+      if(MN1==true)   
          buysellMN1();
       
       last = Time[0];
       }
    
-      if(last != Time[0] && !checkthuHai() && UseRiskPercent==True){
+      if(last != Time[0] && !checkthuHai() && UseRiskPercent==true){
          veHighLow();
 
          //Xoa lenh cu
          XoaLenhCu(Magic);
       
          //Buy D1
-         if(D1==True)
+         if(D1==true)
             buysellD1Risk();
-         if(W1==True)   
+         if(W1==true)   
             buysellW1Risk();
-         if(MN1==True)   
+         if(MN1==true)   
             buysellMN1Risk();
     
          last = Time[0];
@@ -105,16 +110,16 @@ void OnTick()
    }
    
    
-   if(TrailingStop==True){
+   if(TrailingStop==true){
          trailingBUY();
          trailingSELL();
    }
    
    Comment(
-      "- TradingIsAllowed= ", tradingIsAllowed, "\n",
-      "- Current Time= ", currentTime, "\n",
-      "- Start Trading Time= ", StartTradingTime, "\n",
-      "- Stop Trading Time= ", StopTradingTime
+      "- TradingIsAllowed= ", CheckTradingTime(), "\n",
+      "- Current Time= ", Current_Time, "\n",
+      "- Start Trading Time= ", Start_Time, "\n",
+      "- Finish Trading Time= ", Finish_Time
    );
    
    
