@@ -19,6 +19,7 @@ input double   MaxLot=200.0;
 input string   Risk="% AccountBalance";
 input double   RiskPercent=1.0;
 input string   Magic="123456789";
+input bool     TimeTrading=false;
 input string   Start_Time="14";
 input string   Finish_Time="5";
 int StartTime,FinishTime, Current_Time;
@@ -67,13 +68,14 @@ bool CheckTradingTime(){
 void OnTick()
   {
    
-   if(CheckTradingTime() == false){
+   if(TimeTrading==true){
+      if(CheckTradingTime() == false){
       //Xoa lenh cu
       XoaLenhCu(Magic);
-   }
+      }
    
-   if(CheckTradingTime() == true){
-      if(last != Time[0] && !checkthuHai() && UseRiskPercent==false){
+      if(CheckTradingTime() == true){
+         if(last != Time[0] && !checkthuHai() && UseRiskPercent==false){
       
       veHighLow();
       //Xoa lenh cu
@@ -121,7 +123,56 @@ void OnTick()
       "- Start Trading Time= ", Start_Time, "\n",
       "- Finish Trading Time= ", Finish_Time
    );
+ }
    
+   
+   if(last != Time[0] && !checkthuHai() && UseRiskPercent==false){
+      
+      veHighLow();
+      //Xoa lenh cu
+      XoaLenhCu(Magic);
+      
+      //Buy D1
+      if(D1==true)
+         buysellD1();
+      if(W1==true)   
+         buysellW1();
+      if(MN1==true)   
+         buysellMN1();
+      
+      last = Time[0];
+      }
+   
+      if(last != Time[0] && !checkthuHai() && UseRiskPercent==true){
+         veHighLow();
+
+         //Xoa lenh cu
+         XoaLenhCu(Magic);
+      
+         //Buy D1
+         if(D1==true)
+            buysellD1Risk();
+         if(W1==true)   
+            buysellW1Risk();
+         if(MN1==true)   
+            buysellMN1Risk();
+    
+         last = Time[0];
+      }
+   
+   
+   
+   if(TrailingStop==true){
+         trailingBUY();
+         trailingSELL();
+   }
+   
+   Comment(
+      "- TradingIsAllowed= ", CheckTradingTime(), "\n",
+      "- Current Time= ", Current_Time, "\n",
+      "- Start Trading Time= ", Start_Time, "\n",
+      "- Finish Trading Time= ", Finish_Time
+   );
    
  }
  
@@ -130,11 +181,11 @@ void OnTick()
       if(OrderSelect(b,SELECT_BY_POS,MODE_TRADES))
          if(OrderSymbol()==Symbol())
             if(OrderType()==OP_BUY) {
-               if(OrderStopLoss() < Ask-(TP*Point*10))
+               if(OrderStopLoss() < Ask-(SL*Point*10))
                   OrderModify(
                      OrderTicket(),
                      OrderOpenPrice(),
-                     Ask - (TP*Point*10),
+                     Ask - (SL*Point*10),
                      OrderTakeProfit(),
                      0,
                      CLR_NONE
@@ -149,11 +200,11 @@ void OnTick()
       if(OrderSelect(b,SELECT_BY_POS,MODE_TRADES))
          if(OrderSymbol()==Symbol())
             if(OrderType()==OP_SELL) {
-               if(OrderStopLoss() > Bid+(TP*Point*10))
+               if(OrderStopLoss() > Bid+(SL*Point*10))
                   OrderModify(
                      OrderTicket(),
                      OrderOpenPrice(),
-                     Bid + (TP*Point*10),
+                     Bid + (SL*Point*10),
                      OrderTakeProfit(),
                      0,
                      CLR_NONE
