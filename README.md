@@ -8,3 +8,5 @@ https://www.youtube.com/watch?v=sqCkCjgKBys
 https://www.paypal.com/paypalme/anhpnh
 
 ![Screenshot](DailyBreakoutV5_GU.PNG)
+
+![Screenshot](DailyBreakoutV5_GU_SpreadVariable.PNG)
