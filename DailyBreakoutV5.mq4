@@ -159,7 +159,7 @@ void OnTick()
    for (int i=OrdersTotal()-1; i>=0; i--){
       if(!OrderSelect(i, SELECT_BY_POS, MODE_TRADES)) continue;
       if(OrderMagicNumber() == Magic){
-         SendNotification("Delete command: " + OrderTicket());
+         SendNotification("Delete command: " + Symbol() + "@" + OrderTicket());
          OrderDelete(OrderTicket(), Red);
       }
    }
@@ -189,7 +189,7 @@ void OnTick()
       Magic
       );
       if(SendMessage == true)
-      SendNotification("- New command: " 
+      SendNotification("- New command: " + Symbol() + "@"
                         + (string)D1Buy + "\n- lotGiaoDich: " 
                         + lotGiaoDich 
                         + "\n- Price: " 
@@ -212,7 +212,7 @@ void OnTick()
       );
       
       if(SendMessage == true)
-      SendNotification("- New command: " 
+      SendNotification("- New command: " + Symbol() + "@"
                         + (string)D1Sell + "\n- lotGiaoDich: " 
                         + lotGiaoDich 
                         + "\n- Price: " 
@@ -241,7 +241,7 @@ void OnTick()
       Magic
       );
       
-      SendNotification("- New command: " 
+      SendNotification("- New command: " + Symbol() + "@"
                         + (string)D1Buy + "\n- lotGiaoDich: " 
                         + Lot 
                         + "\n- Price: " 
@@ -263,7 +263,7 @@ void OnTick()
       Magic
       );
       
-      SendNotification("- New command: " 
+      SendNotification("- New command: " + Symbol() + "@"
                         + (string)D1Sell + "\n- lotGiaoDich: " 
                         + Lot 
                         + "\n- Price: " 
@@ -297,7 +297,7 @@ void OnTick()
       Magic
       );
       
-      SendNotification("- New command: " 
+      SendNotification("- New command: " + Symbol() + "@"
                         + (string)W1Buy + "\n- lotGiaoDich: " 
                         + lotGiaoDich 
                         + "\n- Price: " 
@@ -319,7 +319,7 @@ void OnTick()
       Magic
       );
       
-      SendNotification("- New command: " 
+      SendNotification("- New command: " + Symbol() + "@"
                         + (string)W1Sell + "\n- lotGiaoDich: " 
                         + lotGiaoDich 
                         + "\n- Price: " 
@@ -347,7 +347,7 @@ void OnTick()
       Magic
       );
       
-      SendNotification("- New command: " 
+      SendNotification("- New command: " + Symbol() + "@"
                         + (string)W1Buy + "\n- lotGiaoDich: " 
                         + Lot 
                         + "\n- Price: " 
@@ -370,7 +370,7 @@ void OnTick()
       Magic
       );
       
-      SendNotification("- New command: " 
+      SendNotification("- New command: " + Symbol() + "@"
                         + (string)W1Sell + "\n- lotGiaoDich: " 
                         + Lot 
                         + "\n- Price: " 
@@ -405,7 +405,7 @@ void OnTick()
       Magic
       );
       
-      SendNotification("- New command: " 
+      SendNotification("- New command: " + Symbol() + "@"
                         + (string)MN1Buy + "\n- lotGiaoDich: " 
                         + lotGiaoDich 
                         + "\n- Price: " 
@@ -427,7 +427,7 @@ void OnTick()
       Magic
       );
       
-      SendNotification("- New command: " 
+      SendNotification("- New command: " + Symbol() + "@"
                         + (string)MN1Sell + "\n- lotGiaoDich: " 
                         + lotGiaoDich 
                         + "\n- Price: " 
