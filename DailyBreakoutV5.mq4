@@ -11,7 +11,7 @@ extern double   Lot=0.01;//Lot Static
 extern double   SL=5.0;//Stoploss
 extern double   TP=15.0;//Takeprofit
 extern bool     TrailingStop=true;//TrailingStop
-extern int      Step=10;//Step
+extern int      Step=5;//Step
 extern bool     UseRiskPercent=true;//UseRiskPercent
 extern double   MaxLot=1.0;//MaxLot
 extern double   RiskPercent=1.0;//% AccountBalance
@@ -33,6 +33,11 @@ int    D1Buy, D1Sell, W1Buy, W1Sell, MN1Buy, MN1Sell;
 //+------------------------------------------------------------------+
 int OnInit()
   {
+  if(Symbol() == "XAUUSDm" || Symbol() == "XAUUSD"){
+            SL *= 10;
+            TP *= 10;
+            Step *= 10;
+  }
    if(SendMessage == true)
       SendNotification("-EA OnInit AccountName: " + AccountName() + "\n-AccountNumber: " + AccountNumber() + "\n-AccountServer: " + AccountServer());
    
@@ -67,8 +72,7 @@ bool checkngayTrade(){
                                      
 
 void OnTick()
-  {
-      
+  { 
       Comment("Trading: ", checkngayTrade());
      
       if(last != Time[0] && checkngayTrade()==true && UseRiskPercent==false){
