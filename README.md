@@ -16,6 +16,15 @@ https://www.paypal.com/paypalme/anhpnh
 # GBPUSD Ticket Manager Data Variable Spread Year by Year
 ![Screenshot](DailyBreakoutV5_GU_Profit.PNG)
 
+# EURUSD Ticket Manager Data Variable Spread Year by Year
+![Screenshot](DailyBreakoutV5_EU_Profit.PNG)
+
+# AUDUSD Ticket Manager Data Variable Spread Year by Year
+![Screenshot](DailyBreakoutV5_AU_Profit.PNG)
+
+# XAUUSD Ticket Manager Data Variable Spread Year by Year
+![Screenshot](DailyBreakoutV5_Gold_Profit.PNG)
+
 # Gold Ticket Manager Data Variable Spread
 ![Screenshot](DailyBreakoutV5_Gold_SpreadVariable.PNG)
 
